@@ -1,0 +1,9 @@
+@font-face {
+    font-family: Reality-Sunday-light; /* Гарнитура шрифта */
+    src: url(/css/fonts/Reality-Sunday-light.ttf); /* Путь к файлу со шрифтом */
+   }
+
+@font-face {
+  font-family: Nouveau_IBM;
+  src: url(/css/fonts/Nouveau_IBM.ttf);
+}

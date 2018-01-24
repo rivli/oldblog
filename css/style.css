@@ -1,0 +1,583 @@
+﻿/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 3.0 License
+
+Name       : Accumen
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120712
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+iframe {
+	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: rgb(61, 61, 61);
+}
+
+body {
+font-family: "Open Sans", sans-serif;
+	line-height: 1.75em;
+	font-size: 11.5pt;
+    background: #edeef0;
+	 letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+    color: rgba(0,0,0,.84);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+body,input {
+}
+
+br.clearfix {
+	clear: both;
+}
+
+h1,h2,h3,h4 {
+	text-transform: uppercase;
+	font-weight: normal;
+	font-family: "Open Sans", sans-serif;
+	color: #353535;
+	margin-bottom: 1em;
+	margin: 0;
+}
+
+h1 {
+	font-size: 1.75em;
+}
+
+h2  {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.25em;
+}
+
+h4 {
+	font-size: 1em;
+}
+
+img.alignleft {
+	float: left;
+	margin: 5px 30px 20px 0;
+}
+
+img.aligntop {
+	margin: 5px 0 20px 0;
+}
+
+p {
+	margin-bottom: 1.5em;
+}
+
+
+.desc {
+	width: 100%;
+	height: 300px;
+	display: inline-block;
+    background-position: center bottom; /* Положение фона */
+    background-repeat: no-repeat; /* Отменяем повторение фона */
+}
+
+.messageshow {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    widht: 100;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    z-index: 100000;
+}
+
+.image-block {
+	text-align: center;
+	width: 100%;
+}
+
+.image-description {
+	text-align: center;
+	font-size: 17px;
+	color:gray;
+}
+
+.poster-view-min {
+	vertical-align: middle;
+}
+
+#my-photo {
+        height: 40%;
+    border-radius: 50%;
+    position: relative;
+    left: 10%;
+    top: 10%;
+}
+
+#my-goal {
+    float: right;
+    padding: 20px;
+		padding-right: 80px;
+    width: 55%;
+    position: relative;
+    top: 10%;
+    color: white !important;
+}
+
+#content {
+	/*width: 100%;*/
+	background: white;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 1%;
+    width: 98%;
+}
+
+#header {
+    margin: 0 auto 10px auto;
+    height: 40px;
+    background: #4a76a8;
+	position: relative;
+	/*box-shadow: 10px 100px 150px 0px rgba(0,0,0,0.15);*/
+	/*border-bottom: solid 1px #a2a2a2;*/
+	width: 50%;
+}
+
+#floating-header {
+	height: 40px;
+	position: fixed;
+	background:white;
+	z-index:100;
+	top:0;
+	left:0;
+	display: none;
+	/*box-shadow: 10px 100px 150px 0px rgba(0,0,0,0.15);*/
+	border-bottom: solid 1px #a2a2a2;
+	width: 100%;
+}
+
+#logo {
+	display: none;
+	position: absolute;
+	right: 40px;
+	line-height: 57px;
+	font-family: Reality-Sunday-light;
+	color: rgb(73, 73, 73);
+	font-size: 30px;
+	text-decoration: none;
+}
+
+
+
+#menu {
+	line-height: 40px;
+	/*position: absolute;
+	left: 40px;*/
+	height: 57px;
+	font-family: "Open Sans", sans-serif;
+}
+
+#menu a {
+	text-decoration: none;
+	color: white;
+	font-size: 0.95em;
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+#menu ul {
+	padding: 0 20px 0 20px;
+	list-style: none;
+}
+
+#menu ul li {
+	display: inline;
+	margin: 0 8px 0 8px;
+}
+
+li .first{
+margin-left: 0;
+}
+
+#page {
+	position: relative;
+	width: 100%;
+	/*box-shadow: 10px 100px 150px 0px rgba(0,0,0,0.15);
+	border: solid 1px #f3f3f3;*/
+}
+
+#wrapper {
+	width: 50%;
+	position: relative;
+	margin: 0 auto 0 auto;
+}
+
+.left-sidebar {
+	width: 15%;
+position: absolute;
+top: auto;
+right: 76%;
+}
+
+.ls-item {
+    width: 100%;
+    background: white;
+}
+
+.ls-item-name {
+	padding: 10px;
+	border-bottom: 1px solid #8a8a8a;
+}
+
+.categories {
+}
+
+.categories ul {
+    list-style-type: none;
+}
+
+.categories ul li {
+    padding: 10px;
+}
+
+.categories ul li:hover {
+    background: rgb(215, 215, 215);
+}
+
+.code-block {
+	background: rgba(0,0,0,.05);
+	padding: 2%;
+	font-size: 16px;
+	width: 96%;
+	font-family: Menlo,Monaco,"Courier New",Courier,monospace;
+}
+
+.quote-block {
+	background: rgba(0,0,0,.05);
+	padding: 2%;
+	font-size: 16px;
+	width: 96%;
+	font-family: Menlo,Monaco,"Courier New",Courier,monospace;
+}
+
+.q-author {
+	width: auto;
+	text-align: right;
+}
+
+
+.article-output {
+	display: inline-block;
+	background: white;
+	margin-bottom: 20px;
+}
+
+.article-name {
+	    width: 98%;
+	    padding: 1%;
+	    font-weight: bold;
+	    border: .001em solid #b7b7b7;
+			border-top: 0;
+			text-decoration: none;
+}
+
+.article-name-inside {
+		font-size: 20px;
+    width: 100%;
+    font-weight: 600;
+		padding: 5px;
+}
+
+.article-nameblock {
+		width: 100%;
+    border-bottom: 1px solid #b7b7b7;
+    margin-bottom: 5px;
+}
+
+.article-image {
+    border: 0px;
+    color: transparent;
+    display: block;
+    max-width: 100%;
+    border-radius: 2px;
+    user-select: none;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+#categories {
+	line-height: 30px;
+	width: 100%;
+	text-align: center;
+	height: 30px;
+	font-family: "Open Sans", sans-serif;
+}
+
+#categories a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #1C1C1C;
+	font-size: 1.1em;
+}
+
+#categories a:hover {
+	text-decoration: none;
+	color: #9a9a9a;
+}
+
+#categories ul {
+	padding: 0 20px 0 20px;
+	list-style: none;
+}
+
+#categories ul li {
+	display: inline;
+	padding: 10px 10px 10px 10px;
+	margin: 0 8px 0 8px;
+}
+
+.plsaddposter {
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+    padding: 15px;
+    color: grey;
+}
+
+.article-poster-container {
+	text-align: center;
+}
+
+.article-poster {
+    max-height: 500px;
+    max-width: 100%;
+}
+
+#article {
+	outline: none;
+}
+
+.image-place {
+	width: 100%;
+	height: 300px;
+	display: inline-block;
+    background-position: center center; /* Положение фона */
+    background-repeat: no-repeat; /* Отменяем повторение фона */
+}
+
+#poster-settings {
+	position: fixed;
+    top: 60px;
+    right: 10px;
+    background: white;
+    color: black;
+    padding: 10px;
+		text-align: center;
+		width: initial;
+}
+
+.image-settings {
+background: white;
+color: black;
+padding: 10px;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	border: 1px solid rgb(223, 223, 223);
+}
+
+.bold-text {
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.hided {
+	display: none;
+}
+
+/* for forms */
+.addpost {
+	}
+
+.centrator {
+	width: 100%;
+	text-align: center;
+}
+
+#category {
+	border: 0;
+}
+
+.main-input-placeholder {
+	color:#747474;
+}
+
+input[name="name"] {
+	width: 100%;
+border: 0;
+border-bottom: 1px solid #828282;
+font-size: 25px;
+font-weight: bold;
+outline: none;
+}
+
+select {
+	border-radius: 0;
+    font-size: 20px;
+    background: white;
+    outline: none;
+}
+
+input[name="tags"] {
+	width: 100%;
+border: 0;
+font-size: 20px;
+outline: none;
+border-bottom: 1px solid #828282;
+border-top: 1px solid #828282;
+}
+
+.form-button {
+	font-size: 15px;
+	padding: 5px 10px;
+	background: #4a76a8;
+	color: white;
+	outline: none;
+	border: 0;
+	margin: 10px 0 0 0;
+	cursor: pointer;
+}
+
+.form-button:hover {
+	background: #5482b8;
+}
+/*forms closed*/
+
+.autorization {
+	display: none;
+	text-align: center;
+	width: 20%;
+	position: fixed;
+	background: white;
+	margin: auto 40%;
+	top: 40%;
+	padding: 5px;
+}
+
+.autorization input[type="text"] {
+	width: 100%;
+}
+
+.autorization input[type="password"] {
+	width: 100%;
+}
+
+.windname {
+	text-align: left;
+	position: relative;
+}
+
+.signin {
+	font-size: 20px;
+font-weight: bold;
+margin: 5px;
+position: relative;
+}
+
+.closewind {
+	font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+		text-decoration: underline;
+		cursor: pointer;
+}
+
+
+/* window styles*/
+.windowBlock {
+	z-index: 1020;
+width: 100%;
+text-align: center;
+position: fixed;
+top: 10%;
+}
+
+
+.newWindow {
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	z-index: 120;
+	border: 1px solid rgb(142, 142, 142);
+}
+
+.winHead {
+	background: #e2e2e2;
+	padding: 5px;
+	color: rgb(88, 88, 88);
+}
+
+
+.winClose {
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+.winContent {
+    padding: 5px;
+		background: white;
+}
+/*---window close----*/
+
+
+/*----additional form buttons----*/
+
+.form-buttons-container {
+    width: initial;
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+
+}
+
+.form-buttons-container-right {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+}
+
+.additional-button {
+	padding: 5px;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-size: 1.1em;
+}
+
+.additional-button:hover {
+	color:#747474;
+}
+
+/*---additional form buttons close-------*/
