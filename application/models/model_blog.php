@@ -18,6 +18,11 @@ class Model_Blog extends Model
 		while ($categorie = mysqli_fetch_assoc($result)) {
 		if($categorie['poster'] == 'img') {
 			$poster = mysqli_fetch_array(mysqli_query($ADDITIONALBD, "SELECT * FROM `".$categorie['id']."-Images` WHERE id = '1'"));
+
+			if (!$poster['url']) {
+				$poster['url'] = "/images/desc/main_desc.jpg";
+			};
+
 			$categorie['poster'] = $poster['url'];
 		}
 			$articles[] = $categorie;
@@ -67,17 +72,18 @@ class Model_Blog extends Model
 		$article = mysqli_fetch_array($result);
 
 
+
 		//==================Создаем таблицу комментов
 		$sql = "CREATE TABLE `".$article['id']."-Comments` ( `id` INT NOT NULL AUTO_INCREMENT , `mainid` INT(255) NOT NULL , `user` INT(255) NOT NULL , `text` TEXT NOT NULL , `date` DATE NOT NULL , `time` TIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 		mysqli_query($ADDITIONALBD, $sql);
 
-		//==================Создаем таблицу комментов
+		//==================Создаем таблицу images
 		$sql = "CREATE TABLE `".$article['id']."-Images` ( `id` INT NOT NULL AUTO_INCREMENT ,`status` VARCHAR(300) NOT NULL ,`url` TEXT NOT NULL ,`description` TEXT NOT NULL , `width` INT(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 		mysqli_query($ADDITIONALBD, $sql);
 
 
 		//------------------Добавляем постер опроса
-		if (!file_exists("images/articles/".$article['id'])) {mkdir("images/articles/".$article['id'],0777);};
+		if (!file_exists("images/articles/".$article['id'])) {mkdir("images/articles/".$article['id'],0777);} else echo "images/articles/".$article['id']."already exist";
 
 		    $errorSubmit = false; // контейнер для ошибок
 		        if(isset($_FILES['poster']) && $_FILES['poster'] !=""){ // передали ли нам вообще файл или нет
@@ -98,12 +104,13 @@ class Model_Blog extends Model
 		                // Файл сохранится в папку /files/
 		                move_uploaded_file($_FILES["poster"]["tmp_name"], "images/articles/".$article['id']."/".$_FILES["poster"]["name"]);
 		                $path_file = "https://ilvirzakiryanov.com/images/articles/".$article['id']."/".$_FILES["poster"]["name"];
-		              	mysqli_query($MAINBD , "UPDATE `articles` SET `poster` = '".$path_file."' WHERE `id` = '".$article['id']."'");
-									mysqli_query($ADDITIONALBD , "INSERT INTO `".$article['id']."-Images`  VALUES ('', '".$_POST['poster_status']."', '".$path_file."', '".$_POST['poster_description']."', '".$_POST['poster_width']."')");
+		              	mysqli_query($MAINBD , "UPDATE `articles` SET `poster` = '".$path_file."' WHERE `id` = '".$article['id']."'") or die("Error on 101 line");
+									mysqli_query($ADDITIONALBD , "INSERT INTO `".$article['id']."-Images`  VALUES ('', 'poster', '".$path_file."', '".$_POST['poster_description']."', '".$_POST['poster_width']."')") or die("Error on 102 line");
 
-								}
-		        }
+								};
+		        };
 //Добавляем остальные изображения, если они есть
+
 
 if ($_POST['imagesNumber'] != 0) {
 	$i = 1;
@@ -130,10 +137,12 @@ if ($_POST['imagesNumber'] != 0) {
 								move_uploaded_file($_FILES['file-image-'.$i]["tmp_name"], "images/articles/".$article['id']."/".$_FILES['file-image-'.$i]["name"]);
 								$path_file = "https://ilvirzakiryanov.com/images/articles/".$article['id']."/".$_FILES['file-image-'.$i]["name"];
 
-							mysqli_query($ADDITIONALBD , "INSERT INTO `".$article['id']."-Images`  VALUES ('', 'image', '".$path_file."', '".$_POST['image-'.$i.'-description']."', '100')");
+							mysqli_query($ADDITIONALBD , "INSERT INTO `".$article['id']."-Images`  VALUES ('', 'image', '".$path_file."', '".$_POST['image-'.$i.'-description']."', '100')") or die("Error on 135 line");
 
-						//	$_POST['description'] = str_replace("\$IMG".$i, '<div class="image-block" id="image-'.$i.'-block"><div class="image-place" style="background: url('.$path_file.');background-position: center center; background-repeat: no-repeat; background-size: cover; " id="image-'.$i.'"></div><div class="image-description" id="image-'.$i.'-description">'.$_POST['image-'.$i.'-description'].'</div></div><br>', $_POST['description']);
-						$_POST['description'] = str_replace("\$IMG".$i, '<img class="article-image" src="'.$path_file.'" id="image-'.$i.'"><div class="image-description" id="image-'.$i.'-description">'.$_POST['image-'.$i.'-description'].'</div>', $_POST['description']);
+							//$_POST['description'] = str_replace("\$IMG".$i, '<div class="image-block" id="image-'.$i.'-block"><div class="image-place" style="background: url('.$path_file.');background-position: center center; background-repeat: no-repeat; background-size: cover; " id="image-'.$i.'"></div><div class="image-description" id="image-'.$i.'-description">'.$_POST['image-'.$i.'-description'].'</div></div><br>', $_POST['description']);
+
+
+						$article['description'] = str_replace("IZ-IMG-CODE".$i, '<img class="article-image" src="'.$path_file.'" id="image-'.$i.'"><div class="image-description" id="image-'.$i.'-description">'.$_POST['image-'.$i.'-description'].'</div>', $article['description']);
 
 						}
 				}
@@ -141,10 +150,15 @@ if ($_POST['imagesNumber'] != 0) {
 		$i++;
 	}
 
-	mysqli_query($MAINBD , "UPDATE `articles` SET `description` = '".$_POST['description']."' WHERE `id` = '".$article['id']."'");
+
+
+	mysqli_query($MAINBD , "UPDATE `articles` SET `description` = '".$article['description']."' WHERE `id` = '".$article['id']."'") or die("Error on 149 line");
 
 }
 
+$data['id'] = $article['id'];
+$data['name'] = $article['name'];
+return $data;
 
 	//	MessageSend(3, 'Опрос успешно добавлен.', "/");
 
@@ -153,6 +167,7 @@ if ($_POST['imagesNumber'] != 0) {
 
 	public function article($id)
 	{
+
 		$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
 		$ADDITIONALBD = mysqli_connect(HOST, USER_AD, PASS, DB_AD) or die("Ошибка MySQL: ".mysql_error());
 

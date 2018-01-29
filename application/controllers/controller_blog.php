@@ -42,6 +42,6 @@ class Controller_Blog extends Controller
 	function action_query_addpost()
 	{
 		$data = $this->model->add_query_post($_POST);
-		$this->view->generate(['content' => 'addpost_view.php','title' => 'Add Post'], 'template_view.php', $data);
+		$this->view->generate(['content' => 'articleadded_view.php','title' => 'Add Post'], 'template_view.php', $data);
 	}
 }

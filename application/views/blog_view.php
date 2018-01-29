@@ -38,6 +38,7 @@ $i=COUNT($data['articles']);
 $i--;
 while ($i >= 0) {
   $row = $data['articles'][$i];
+
   echo '<div class="article-output">
   <img class="article-image" src="'.$row['poster'].'" width="100%">
 

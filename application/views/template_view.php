@@ -12,7 +12,6 @@
 		<link rel="stylesheet" type="text/css" href="/css/fonts.css" />
 		<script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
   <SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></SCRIPT>
-		<script src="/js/form.js" type="text/javascript"></script>
 			<script src="/js/additional.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		// return a random integer between 0 and number

@@ -23,3 +23,11 @@ function openWindow(name, url) {
   }
 
 }
+
+
+
+function checkPlacholder() {
+    if ($(".main-input-placeholder").html()) {
+        $(".main-input").empty();
+    }
+}
