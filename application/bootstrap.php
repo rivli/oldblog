@@ -23,6 +23,5 @@ require_once 'setting.php';
 
 
 
-
 require_once 'core/route.php';
 Route::start(); // запускаем маршрутизатор

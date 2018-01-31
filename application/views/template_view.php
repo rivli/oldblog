@@ -1,6 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php  ?>
+<!DOCTYPE html PUBLIC>
 
-<html xmlns="https://www.w3.org/1999/xhtml">
+<html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -8,8 +9,8 @@
 		<title><?php echo $title ?></title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
 		<link href="https://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/fonts.css" />
 		<script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
   <SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></SCRIPT>
 			<script src="/js/additional.js" type="text/javascript"></script>
@@ -42,18 +43,25 @@
 
 	</head>
 	<body>
+		<?php // vardump($_SESSION); ?>
 		<div id="header">
-
-			<div id="menu">
-				<ul>
-					<li class="first active"><a href="/blog">Блог</a></li>
-					<li><a href="/blog/addpost">Добавить статью</a></li>
-					<li class="last"><a href="/">Обо мне</a></li>
-				</ul>
-				<br class="clearfix" />
+			<div class="menu-for-desktops">
+				<div id="menu">
+					<ul>
+						<li class="first active"><a href="/blog">Блог</a></li>
+						<li class="last"><a href="/">Обо мне</a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
 			</div>
-			<a href="/" id="logo">Ilvir Zakiryanov</a>
-
+			<div class="menu-for-phones">
+				<table>
+					<tr>
+						<td><img src="https://image.flaticon.com/icons/svg/56/56763.svg" id="open-menu" alt=""></td>
+						<td><div class="menu-name">Блог</div></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		<div id="floating-header">
 
@@ -69,7 +77,10 @@
 
 		</div>
 
-						<?php include 'application/views/'.$content_view; ?>
+						<?php
+
+								$routes = explode('/', $_SERVER['REQUEST_URI']);
+						include 'application/views/'.$content_view; ?>
 
 <script type="text/javascript">
 /*$(document).ready(function() {

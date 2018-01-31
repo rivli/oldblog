@@ -1,4 +1,25 @@
+<?php if ($_SESSION['upost'] == 'admin') { ?>
+<div class="right-sidebar sb">
+  <div class="item">
+    <div class="item-name">
+      Админ панель
+    </div>
+    <div class="categories">
+      <ul>
+      <a href="/blog/edit/<?php echo $data['id'] ?>"><li>Редактировать</li></a>
+        <a href="#" onclick="areyousure()"><li>Удалить</li></a>
+      </ul>
+    </div>
+  </div>
+</div>
 
+    <script type="text/javascript">
+    function areyousure() {
+        var areYouSure = confirm("Вы уверены, что хотите удалить статью?");
+         if (areYouSure) location.href = "/blog/delete/<?php echo $data['id'] ?>";
+    }
+    </script>
+<?php } ?>
 <?php if ($data['poster']) { ?>
 <div class="image-block">
 <div class="desc" style="background: url(<?php echo $data['poster']['url'] ?>);background-position: center center; /* Положение фона */

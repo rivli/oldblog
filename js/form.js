@@ -5,9 +5,13 @@ function checkPlacholder() {
 }
 
 
-function addPost() {//It's main function
+function addPost(draft) {//It's main function
     //function wich replace all Images in article to CODE like $IMG+number
-
+    if(draft == 1) {
+      $("#save-as-draft").val(1);
+    } else {
+      $("#save-as-draft").val(0);
+    }
   var elems = $("#article .image-block");
   if(elems.length >= 1) {//проверяет есть ли изображения, кроме постера
     var elemsTotal = elems.length;

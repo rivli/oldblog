@@ -11,7 +11,7 @@ class Model_Blog extends Model
 
 		$articles= array();
 
-		$query = "SELECT * FROM `articles`";
+		$query = "SELECT * FROM `articles`  WHERE status = 'published'";
 		$result = mysqli_query($MAINBD, $query);
 
 
@@ -25,12 +25,70 @@ class Model_Blog extends Model
 
 			$categorie['poster'] = $poster['url'];
 		}
-			$articles[] = $categorie;
+
+		if ($categorie['status'] == 'published') $articles[] = $categorie;
 		}
 		$data['articles'] = $articles;
-		$articlesnum = mysqli_fetch_array(mysqli_query($MAINBD , "SELECT COUNT(*) FROM `articles`"));
-		$data['articlesnum'] = $articlesnum[0];
 
+
+				$query = "SELECT * FROM `categories`";
+				$result = mysqli_query($MAINBD, $query);
+				$cat= array();
+
+				while ($categories = mysqli_fetch_assoc($result)) {
+					$cat[] = $categories;
+				}
+				$data['categories'] = $cat;
+				$catsnum = mysqli_fetch_array(mysqli_query($MAINBD , "SELECT COUNT(*) FROM `categories`"));
+				$data['catsnum'] = $catsnum[0];
+
+		return $data;
+	}
+
+	public function cat($catURL)
+	{
+
+		$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
+		$ADDITIONALBD = mysqli_connect(HOST, USER_AD, PASS, DB_AD) or die("Ошибка MySQL: ".mysql_error());
+
+		$articles= array();
+
+		$result2 = mysqli_query($MAINBD , "SELECT COUNT(*) FROM `articles` WHERE category = '".$catURL."' and status = 'published'");
+		if ($result2) {
+			$articlesnum = mysqli_fetch_array($result2);
+			$data['articlesnum'] = $articlesnum[0];
+		} else $data['articlesnum'] = 0;
+
+		if ($data['articlesnum'] != 0) {
+					$query = "SELECT * FROM `articles` WHERE category = '".$catURL."'";
+					$result = mysqli_query($MAINBD, $query);
+
+					if ($result) {
+						while ($categorie = mysqli_fetch_assoc($result)) {
+
+								if($categorie['poster'] == 'img') {
+									$poster = mysqli_fetch_array(mysqli_query($ADDITIONALBD, "SELECT * FROM `".$categorie['id']."-Images` WHERE id = '1'"));
+									if (!$poster['url']) {$poster['url'] = "/images/desc/main_desc.jpg";};
+									$categorie['poster'] = $poster['url'];
+								}
+
+								if ($categorie['status'] == 'published') $articles[] = $categorie;
+						}
+					}
+					$data['articles'] = $articles;
+				};
+
+
+				$query = "SELECT * FROM `categories`";
+				$result = mysqli_query($MAINBD, $query);
+				$cat= array();
+
+				while ($categories = mysqli_fetch_assoc($result)) {
+					$cat[] = $categories;
+				}
+				$data['categories'] = $cat;
+				$catsnum = mysqli_fetch_array(mysqli_query($MAINBD , "SELECT COUNT(*) FROM `categories`"));
+				$data['catsnum'] = $catsnum[0];
 
 		return $data;
 	}
@@ -61,10 +119,11 @@ class Model_Blog extends Model
 		$_POST['description'] = FormChars($_POST['description']);
 		$_POST['tags'] = FormChars($_POST['tags']);
 
+		if ($_POST['save-as-draft'] == 1) {$artcilesStatus = "draft";} else $artcilesStatus = "published";
 
 
 
-		mysqli_query($MAINBD , "INSERT INTO `articles`  VALUES ('', '".$_POST['name']."', '".$_POST['category']."', '".$_POST['description']."', '".$_POST['tags']."','img', NOW(), '".date("H:i:s")."')");
+		mysqli_query($MAINBD , "INSERT INTO `articles`  VALUES ('','".$artcilesStatus."', '".$_POST['name']."', '".$_POST['category']."', '".$_POST['description']."', '".$_POST['tags']."','img', NOW(), '".date("H:i:s")."')");
 
 
 		$query = "SELECT * FROM `articles` WHERE (`name` = '".$_POST['name']."') and (`description` = '".$_POST['description']."')";
@@ -154,19 +213,12 @@ if ($_POST['imagesNumber'] != 0) {
 
 	mysqli_query($MAINBD , "UPDATE `articles` SET `description` = '".$article['description']."' WHERE `id` = '".$article['id']."'") or die("Error on 149 line");
 
-}
-
-$data['id'] = $article['id'];
-$data['name'] = $article['name'];
-return $data;
-
-	//	MessageSend(3, 'Опрос успешно добавлен.', "/");
-
-		//------------------------------------------------------------------------------------------------------
 	}
 
-	public function article($id)
-	{
+	header('location: /blog/article/'.$article['id']);
+	}
+
+	public function article($id) {
 
 		$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
 		$ADDITIONALBD = mysqli_connect(HOST, USER_AD, PASS, DB_AD) or die("Ошибка MySQL: ".mysql_error());
@@ -178,9 +230,76 @@ return $data;
 
 		$data['poster'] = mysqli_fetch_array(mysqli_query($ADDITIONALBD, "SELECT * FROM `".$id."-Images` WHERE status = 'poster'"));
 
+		$query = "SELECT * FROM `categories`";
+		$result = mysqli_query($MAINBD, $query);
+		$cat= array();
+
+		while ($categories = mysqli_fetch_assoc($result)) {
+			$cat[] = $categories;
+		}
+		$data['categories'] = $cat;
+		$catsnum = mysqli_fetch_array(mysqli_query($MAINBD , "SELECT COUNT(*) FROM `categories`"));
+		$data['catsnum'] = $catsnum[0];
+
 		return $data;
 	}
 
+	public function signin($post) {
+
+	$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
+		$user = mysqli_fetch_array(mysqli_query($MAINBD, "SELECT * FROM `users` WHERE login = '".$post['login']."' and password = '".$post['password']."'"));
 
 
+		if ($user) {
+
+			$_SESSION['ulogin'] = 'logined';
+			$_SESSION['upost'] = $user['post'];
+		} else {
+			return 'логин или пароль введены не верно';
+		};
+		header('location: /blog');
+
+	}
+
+	public function signout() {
+
+		session_destroy();
+		header('location: /blog');
+
+	}
+
+
+	public function add_cat($post)
+	{
+		$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
+
+		$_POST['name'] = FormChars($_POST['name']);
+		$_POST['url'] = FormChars($_POST['url']);
+		$_POST['description'] = FormChars($_POST['description']);
+
+		mysqli_query($MAINBD , "INSERT INTO `categories`  VALUES ('', '".$_POST['name']."', '".$_POST['url']."', '".$_POST['description']."')");
+		header('location: /blog/cat/'.$_POST['url']);
+
+	}
+
+
+	public function delete($id) {
+		$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
+		mysqli_query($MAINBD , "UPDATE `articles` SET `status` = 'deleted' WHERE `id` = '".$id."'") or die("Error on 277 line");
+		header('location: /blog');
+	}
+
+
+	public function edit($id) {
+		$MAINBD = mysqli_connect(HOST, USER, PASS, DB) or die("Ошибка MySQL: " . mysql_error());
+		$ADDITIONALBD = mysqli_connect(HOST, USER_AD, PASS, DB_AD) or die("Ошибка MySQL: ".mysql_error());
+
+		$_POST['name'] = FormChars($_POST['name']);
+		$_POST['description'] = FormChars($_POST['description']);
+		$_POST['tags'] = FormChars($_POST['tags']);
+		if ($_POST['save-as-draft'] == 1) {$artcilesStatus = "draft";} else $artcilesStatus = "published";
+
+		mysqli_query($MAINBD , "UPDATE `articles` SET `status` = '".$artcilesStatus."',`name` = '".$_POST['name']."',`description` = '".$_POST['description']."',`category` = '".$_POST['category']."',`tags` = '".$_POST['tags']."' WHERE `id` = '".$_POST['id']."'") or die("Error on 302 line");
+		header('location: /blog/article/'.$_POST['id']);
+	}
 }

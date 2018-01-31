@@ -1,17 +1,6 @@
-﻿/*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 3.0 License
-
-Name       : Accumen
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20120712
-*/
-
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 iframe {
@@ -27,11 +16,31 @@ a:hover {
 	color: rgb(61, 61, 61);
 }
 
+
+/*short styles*/
+.fl-r {
+  float: right;
+}
+
+.fl-l {
+  float: left;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+/*short styles closed*/
+
 body {
 font-family: "Open Sans", sans-serif;
 	line-height: 1.75em;
 	font-size: 11.5pt;
-    background: #edeef0;
+	background: url(/images/dark-noise-bg.png);
+    /*background: #edeef0;*/
 	 letter-spacing: 0;
     font-weight: 400;
     font-style: normal;
@@ -42,9 +51,6 @@ font-family: "Open Sans", sans-serif;
     color: rgba(0,0,0,.84);
     font-size: 15px;
     line-height: 1.4;
-}
-
-body,input {
 }
 
 br.clearfix {
@@ -76,26 +82,15 @@ h4 {
 	font-size: 1em;
 }
 
-img.alignleft {
-	float: left;
-	margin: 5px 30px 20px 0;
-}
-
-img.aligntop {
-	margin: 5px 0 20px 0;
-}
-
-p {
-	margin-bottom: 1.5em;
-}
-
 
 .desc {
-	width: 100%;
 	height: 300px;
+	width: 100%;
 	display: inline-block;
     background-position: center bottom; /* Положение фона */
     background-repeat: no-repeat; /* Отменяем повторение фона */
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
 .messageshow {
@@ -124,23 +119,6 @@ p {
 	vertical-align: middle;
 }
 
-#my-photo {
-        height: 40%;
-    border-radius: 50%;
-    position: relative;
-    left: 10%;
-    top: 10%;
-}
-
-#my-goal {
-    float: right;
-    padding: 20px;
-		padding-right: 80px;
-    width: 55%;
-    position: relative;
-    top: 10%;
-    color: white !important;
-}
 
 #content {
 	/*width: 100%;*/
@@ -152,13 +130,13 @@ p {
 }
 
 #header {
+  padding: 0;
     margin: 0 auto 10px auto;
-    height: 40px;
     background: #4a76a8;
 	position: relative;
 	/*box-shadow: 10px 100px 150px 0px rgba(0,0,0,0.15);*/
 	/*border-bottom: solid 1px #a2a2a2;*/
-	width: 50%;
+	width: 100%;
 }
 
 #floating-header {
@@ -174,50 +152,38 @@ p {
 	width: 100%;
 }
 
-#logo {
-	display: none;
-	position: absolute;
-	right: 40px;
-	line-height: 57px;
-	font-family: Reality-Sunday-light;
-	color: rgb(73, 73, 73);
-	font-size: 30px;
-	text-decoration: none;
+.menu-for-desktops {
+  display: none;
 }
 
-
-
-#menu {
-	line-height: 40px;
-	/*position: absolute;
-	left: 40px;*/
-	height: 57px;
-	font-family: "Open Sans", sans-serif;
+.menu-for-phones {
+  display: block;
 }
 
-#menu a {
-	text-decoration: none;
-	color: white;
-	font-size: 0.95em;
+.menu-for-phones table,tr,td {
+  vertical-align: middle;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
-#menu a:hover {
-	text-decoration: underline;
+.menu-for-phones td {
+padding: 20px;
 }
 
-#menu ul {
-	padding: 0 20px 0 20px;
-	list-style: none;
+#open-menu {
+      height: 50px;
+      margin: 0 0 0 40px;
+      display: inline;
 }
 
-#menu ul li {
-	display: inline;
-	margin: 0 8px 0 8px;
+.menu-name {
+  color: white;
+  font-size: 50px;
+  display: inline;
+  margin: 0 8px 0 40px;
 }
 
-li .first{
-margin-left: 0;
-}
+/*menu here*/
 
 #page {
 	position: relative;
@@ -227,42 +193,19 @@ margin-left: 0;
 }
 
 #wrapper {
-	width: 50%;
+	width: 100%;
 	position: relative;
 	margin: 0 auto 0 auto;
 }
 
 .left-sidebar {
-	width: 15%;
-position: absolute;
-top: auto;
-right: 76%;
+display: none;
 }
 
-.ls-item {
-    width: 100%;
-    background: white;
+.right-sidebar {
+display: none;
 }
-
-.ls-item-name {
-	padding: 10px;
-	border-bottom: 1px solid #8a8a8a;
-}
-
-.categories {
-}
-
-.categories ul {
-    list-style-type: none;
-}
-
-.categories ul li {
-    padding: 10px;
-}
-
-.categories ul li:hover {
-    background: rgb(215, 215, 215);
-}
+/*here left-sidebar */
 
 .code-block {
 	background: rgba(0,0,0,.05);
@@ -319,7 +262,6 @@ right: 76%;
     color: transparent;
     display: block;
     max-width: 100%;
-    border-radius: 2px;
     user-select: none;
     margin-right: auto !important;
     margin-left: auto !important;
@@ -468,19 +410,22 @@ border-top: 1px solid #828282;
 	cursor: pointer;
 }
 
+.form-button.green {
+  background: #54a84a;
+}
+
 .form-button:hover {
 	background: #5482b8;
+}
+
+.form-button.green:hover {
+  background: #6cb464;
 }
 /*forms closed*/
 
 .autorization {
-	display: none;
-	text-align: center;
-	width: 20%;
-	position: fixed;
+	text-align: right;
 	background: white;
-	margin: auto 40%;
-	top: 40%;
 	padding: 5px;
 }
 
@@ -581,3 +526,112 @@ top: 10%;
 }
 
 /*---additional form buttons close-------*/
+
+
+
+
+@media only screen
+and (min-width : 1224px) {
+	#wrapper {
+		width: 50%;
+
+	}
+
+	#header {
+    height: 40px;
+		width: 50%;
+	}
+
+  .menu-for-desktops {
+    display: block;
+  }
+
+  .menu-for-phones {
+    display: none;
+  }
+
+  #menu {
+  	line-height: 40px;
+  	/*position: absolute;
+  	left: 40px;*/
+  	height: 57px;
+  	font-family: "Open Sans", sans-serif;
+  }
+
+  #menu a {
+  	text-decoration: none;
+  	color: white;
+  	font-size: 0.95em;
+  }
+
+  #menu a:hover {
+  	text-decoration: underline;
+  }
+
+  #menu ul {
+  	padding: 0 20px 0 20px;
+  	list-style: none;
+  }
+
+  #menu ul li {
+  	display: inline;
+  	margin: 0 8px 0 8px;
+  }
+
+  li .first{
+  margin-left: 0;
+  }
+
+	.desc {
+	height: 300px;
+    width: 50% !important;
+    max-width: 50% !important;
+}
+
+/*sidebars*/
+.sb {
+  display: block;
+  width: 15%;
+  position: absolute;
+  top: auto;
+}
+
+.left-sidebar {
+  right: 76%;
+}
+
+.right-sidebar {
+  left: 76%;
+}
+
+.sb .item {
+    width: 100%;
+    background: white;
+    margin-bottom: 10px;
+}
+
+.sb .item-name {
+  padding: 10px;
+  border-bottom: 1px solid #8a8a8a;
+}
+
+.categories {
+}
+
+.categories ul {
+    list-style-type: none;
+}
+
+.categories ul li {
+    padding: 10px;
+}
+
+.categories ul li:hover {
+    background: rgb(215, 215, 215);
+}
+
+.categories ul li.active {
+    background: rgb(215, 215, 215);
+}
+
+}
