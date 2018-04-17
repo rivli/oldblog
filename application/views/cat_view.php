@@ -1,42 +1,7 @@
-<div class="left-sidebar sb">
-  <div class="item">
-    <div class="item-name">
-      Категории
-    </div>
-    <div class="categories">
-      <ul>
-        <?php
-          $i = $data['catsnum'] - 1;
-
-          while($i >= 0) {
-            echo '<a href="/blog/cat/'.$data['categories'][$i]['url-code'].'" title="'.$data['categories'][$i]['desc'].'"><li class="first ';
-            if ($routes[3] == $data['categories'][$i]['name']) echo "active";
-            echo '">'.$data['categories'][$i]['name'].'</li></a>';
-              $i--;
-          }
-        ?>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-<?php  if ($_SESSION['upost'] == 'admin') { ?>
-<div class="right-sidebar sb">
-  <div class="item">
-    <div class="item-name">
-      Админ панель
-    </div>
-    <div class="categories">
-      <ul>
-        <a href="/blog/addpost"><li>Добавить статью</li></a>
-        <a href="/blog/addcat"><li>Добавить категорию</li></a>
-        <a href="/blog/signout"><li>Выйти</li></a>
-      </ul>
-    </div>
-  </div>
-</div>
-<?php } ?>
+<?php
+$left_sb_name = 'standart';
+$right_sb_name = 'standart';
+ ?>
 
 
 <div id="wrapper">

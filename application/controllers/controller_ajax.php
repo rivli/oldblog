@@ -15,5 +15,9 @@ class Controller_Ajax extends Controller
 		$this->view->generate(['content' => 'blog_view.php','title' => 'Blog'], 'template_view.php', $data);
 	}
 
-
+	function action_dimension()
+	{
+		$data = $this->model->dimension();
+		$this->view->generate(['content' => 'ajax_view.php','title' => 'Blog'], 'cleartemplate_view.php', $data);
+	}
 }

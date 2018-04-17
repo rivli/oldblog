@@ -1,4 +1,6 @@
-<?php //vardump($data); ?>
+<?php
+  $left_sb_name = 'article';
+  ?>
 <?php if ($data['poster']) { ?>
 <div class="image-block">
 <div class="desc" style="background: url(<?php echo $data['poster']['url'] ?>);background-position: center center; /* Положение фона */
@@ -24,12 +26,12 @@ background-repeat: no-repeat; background-size: cover;width:<?php echo $data['pos
                   $i = $data['catsnum'] - 1;
 
                   while($i >= 0) {
-                    if ($data['category'] == $data['categories'][$i]['url-code']) {
+                    if ($data['category'] == $data['categories'][$i]['URL']) {
                       $selected = 'selected';
                     } else {
                       $selected = '';
                     };
-                      echo '<option value="'.$data['categories'][$i]['url-code'].'" '.$selected.'>'.$data['categories'][$i]['name'].'</option>';
+                      echo '<option value="'.$data['categories'][$i]['URL'].'" '.$selected.'>'.$data['categories'][$i]['name'].'</option>';
                       $i--;
                   }
                 ?>

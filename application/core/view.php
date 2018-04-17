@@ -14,7 +14,9 @@ class View
 		if(is_array($content_view)) {
 			$title = $content_view['title'];
 			$content_view = $content_view['content'];
-		} else {$page_desc = false;}
+			} else {
+			$page_desc = false;
+		}
 		/*
 		if(is_array($data)) {
 

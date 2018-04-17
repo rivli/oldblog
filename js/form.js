@@ -95,7 +95,7 @@ $("#add-image").click(function () {
                 $(".main-input").empty();
             }
 
-            $("#article").append('<div class="image-block" id="image-'+imagesNumber+'-block"><div class="image-place"  contenteditable="false" id="image-'+imagesNumber+'"></div><div class="image-description" contenteditable="false" id="image-'+imagesNumber+'-description"></div></div>');
+            $("#article").append('<div class="image-block" id="image-'+imagesNumber+'-block"><div class="image-place"  contenteditable="false" id="image-'+imagesNumber+'"></div><div class="image-description" contenteditable="false" id="image-'+imagesNumber+'-description"></div></div><br>');
 
 
 

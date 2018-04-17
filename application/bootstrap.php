@@ -1,11 +1,14 @@
 <?php
 
+require_once 'setting.php';
+require_once 'functions.php';
+require_once 'objects.php';
+
 // подключаем файлы ядра
 require_once 'core/model.php';
 require_once 'core/view.php';
 require_once 'core/controller.php';
-
-require_once 'setting.php';
+MessageShow();
 
 /*
 Здесь обычно подключаются дополнительные модули, реализующие различный функционал:

@@ -8,10 +8,10 @@
 class Route
 {
 
-	function ErrorPage404()
+	static function ErrorPage404()
 	{
-				$host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-				header('HTTP/1.1 404 Not Found');
+		$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+		header('HTTPS/1.1 404 Not Found');
 		header("Status: 404 Not Found");
 		header('Location:'.$host.'404');
 		}
@@ -41,7 +41,7 @@ class Route
 		$controller_name = 'Controller_'.$controller_name;
 		$action_name = 'action_'.$action_name;
 
-		/*
+/*
 		echo "Model: $model_name <br>";
 		echo "Controller: $controller_name <br>";
 		echo "Action: $action_name <br>";
@@ -87,8 +87,9 @@ class Route
 		}
 		else
 		{
-			// здесь также разумнее было бы кинуть исключение
+		   // здесь также разумнее было бы кинуть исключение
 			Route::ErrorPage404();
+
 		}
 
 	}

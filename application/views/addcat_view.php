@@ -1,3 +1,6 @@
+<?php 
+  $left_sb_name = 'article';
+  ?>
 <div id="wrapper">
 
   <div id="page">

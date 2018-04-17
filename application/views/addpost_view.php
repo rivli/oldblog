@@ -1,4 +1,6 @@
-<?php //vardump($data); ?>
+<?php
+  $left_sb_name = 'article';
+  ?>
 <div class="plsaddposter">Добавьте Постер</div>
 
 <div id="wrapper">
@@ -24,7 +26,7 @@
                   $i = $data['catsnum'] - 1;
 
                   while($i >= 0) {
-                      echo '<option value="'.$data['categories'][$i]['url-code'].'">'.$data['categories'][$i]['name'].'</option>';
+                      echo '<option value="'.$data['categories'][$i]['URL'].'">'.$data['categories'][$i]['name'].'</option>';
                       $i--;
                   }
                 ?>

@@ -1,12 +1,14 @@
-  <?php
-
-  $left_sb_name = 'standart';
-  $right_sb_name = 'standart';
-   ?>
-
 <div id="wrapper">
 
   <div id="page">
+
+    <div class="cool-div">
+      <div class="content">
+        О том как я создавал и создаю свой блог.<br>
+        Ссылка: <a href="/" target="_blank">Ilvir Zakiryanov's blog</a><br>
+        GitHub: <a href="https://github.com/zakilvir/myblog" target="_blank">myblog</a><br>
+      </div>
+    </div>
 <?php
 $i=COUNT($data['articles']);
 if ($i == 0) {
